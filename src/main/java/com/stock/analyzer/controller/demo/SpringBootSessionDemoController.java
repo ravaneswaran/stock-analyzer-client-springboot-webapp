@@ -1,5 +1,6 @@
-package com.stock.analyzer.controller;
+package com.stock.analyzer.controller.demo;
 
+import com.stock.analyzer.controller.AbstractStockAnalyzerController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class SpringBootSessionController {
+public class SpringBootSessionDemoController extends AbstractStockAnalyzerController {
 
     @GetMapping("/")
     public String process(Model model, HttpSession session) {
@@ -29,22 +30,21 @@ public class SpringBootSessionController {
 
     @PostMapping("/persistMessage")
     public String persistMessage(@RequestParam("msg") String msg, HttpServletRequest request) {
+        HttpSession session = this.getSession(request);
         @SuppressWarnings("unchecked")
-        List<String> messages = (List<String>) request.getSession().getAttribute("MY_SESSION_MESSAGES");
+        List<String> messages = (List<String>) session.getAttribute("MY_SESSION_MESSAGES");
         if (messages == null) {
             messages = new ArrayList<>();
-            request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
+            session.setAttribute("MY_SESSION_MESSAGES", messages);
         }
         messages.add(msg);
-        request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
+        session.setAttribute("MY_SESSION_MESSAGES", messages);
         return "redirect:/";
     }
 
     @PostMapping("/destroy")
     public String destroySession(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "redirect:/";
+        return this.destroySession(request);
     }
-
 
 }

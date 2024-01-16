@@ -1,10 +1,10 @@
-package com.stock.analyzer.controller;
+package com.stock.analyzer.controller.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloWorldController {
+public class HelloWorldDemoController {
 
     @GetMapping("/helloworld")
     public String index(){
