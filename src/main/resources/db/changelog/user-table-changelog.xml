@@ -10,25 +10,35 @@ http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/
 http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
 
     <changeSet id="01" author="Ravaneswaran Chinnasamy">
-
-        <createTable tableName="user">
-
+        <createTable tableName="users">
             <column name="uuid" type="varchar(256)">
                 <constraints primaryKey="true" primaryKeyName="uuid_pk" />
             </column>
-
             <column name="first_name" type="varchar(256)"></column>
             <column name="last_name" type="varchar(256)"></column>
+            <column name="role" type="varchar(256)"></column>
             <column name="email_id" type="varchar(256)"></column>
             <column name="password" type="varchar(256)"></column>
             <column name="status" type="varchar(256)"></column>
+            <column name="created_by" type="varchar(256)"></column>
             <column name="created_date" type="datetime"></column>
             <column name="modified_date" type="datetime"></column>
-
         </createTable>
-
     </changeSet>
 
-
+    <changeSet id="02" author="Raaneswaran Chinnasamy">
+        <insert tableName="users">
+            <column name="uuid" value="001" />
+            <column name="first_name" value="Ravaneswaran" />
+            <column name="last_name" value="Chinnasamy" />
+            <column name="role" value="THE_ALMIGHTY" />
+            <column name="email_id" value="ravaneswaran@gmail.com" />
+            <column name="password" value="2aca6d31b785047bedacb0b57c84cad9" />
+            <column name="status" value="VERIFIED" />
+            <column name="created_by" value="SELF"/>
+            <column name="created_date" value="now()" />
+            <column name="modified_date" value="now()" />
+        </insert>
+    </changeSet>
 
 </databaseChangeLog>
