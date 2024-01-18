@@ -1,16 +1,16 @@
 package com.stock.analyzer.model;
 
+import lombok.Data;
+
+@Data
 public class LoginModel {
 
     private String username;
 
     private String password;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    private boolean loginSuccess;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private String message;
+
 }
